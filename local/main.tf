@@ -2,16 +2,16 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "~> 3.48"
+      version = "~> 5.75"
     }
   }
 
-  required_version = ">= 0.15.0"
+  required_version = ">= 1.8.0"
 }
 
 provider "aws" {
   profile = "default"
-  region  = "eu-west-1"
+  region  = "ap-south-1"
 }
 
 variable "sample_public_key" {
@@ -47,7 +47,7 @@ resource "aws_key_pair" "sample_key" {
 resource "aws_instance" "sample_server" {
   ami                    = data.aws_ami.ubuntu.id
   instance_type          = "t2.micro"
-  vpc_security_group_ids = ["sg-0d2411db69a112a30"]
+  vpc_security_group_ids = ["sg-0569f7ef14ecb1bc9"]
   key_name               = aws_key_pair.sample_key.key_name
 
   tags = {
